@@ -31,23 +31,24 @@ export const requests = new WeakMap<Request, BidiHTTPRequest>();
 export class BidiHTTPRequest extends HTTPRequest {
   static from(
     bidiRequest: Request,
-    frame: BidiFrame | undefined,
+    frame: BidiFrame,
     redirect?: BidiHTTPRequest
   ): BidiHTTPRequest {
     const request = new BidiHTTPRequest(bidiRequest, frame, redirect);
     request.#initialize();
     return request;
   }
-  #redirectBy: BidiHTTPRequest | undefined;
+
+  #redirectChain: BidiHTTPRequest[];
   #response: BidiHTTPResponse | null = null;
   override readonly id: string;
-  readonly #frame: BidiFrame | undefined;
+  readonly #frame: BidiFrame;
   readonly #request: Request;
 
   private constructor(
     request: Request,
-    frame: BidiFrame | undefined,
-    redirectBy?: BidiHTTPRequest
+    frame: BidiFrame,
+    redirect?: BidiHTTPRequest
   ) {
     super();
     requests.set(request, this);
@@ -56,24 +57,49 @@ export class BidiHTTPRequest extends HTTPRequest {
 
     this.#request = request;
     this.#frame = frame;
-    this.#redirectBy = redirectBy;
+    this.#redirectChain = redirect ? redirect.#redirectChain : [];
     this.id = request.id;
   }
 
   override get client(): CDPSession {
-    throw new UnsupportedOperation();
+    return this.#frame.client;
   }
 
   #initialize() {
     this.#request.on('redirect', request => {
       const httpRequest = BidiHTTPRequest.from(request, this.#frame, this);
+      this.#redirectChain.push(this);
+
+      request.once('success', () => {
+        this.#frame
+          .page()
+          .trustedEmitter.emit(PageEvent.RequestFinished, httpRequest);
+      });
+
+      request.once('error', () => {
+        this.#frame
+          .page()
+          .trustedEmitter.emit(PageEvent.RequestFailed, httpRequest);
+      });
       void httpRequest.finalizeInterceptions();
     });
     this.#request.once('success', data => {
       this.#response = BidiHTTPResponse.from(data, this);
     });
+    this.#request.on('authenticate', this.#handleAuthentication);
 
-    this.#frame?.page().trustedEmitter.emit(PageEvent.Request, this);
+    this.#frame.page().trustedEmitter.emit(PageEvent.Request, this);
+
+    if (this.#hasInternalHeaderOverwrite) {
+      this.interception.handlers.push(async () => {
+        await this.continue(
+          {
+            headers: this.headers(),
+          },
+          0
+        );
+      });
+    }
   }
 
   override url(): string {
@@ -100,12 +126,31 @@ export class BidiHTTPRequest extends HTTPRequest {
     throw new UnsupportedOperation();
   }
 
+  get #hasInternalHeaderOverwrite(): boolean {
+    return Boolean(
+      Object.keys(this.#extraHTTPHeaders).length ||
+        Object.keys(this.#userAgentHeaders).length
+    );
+  }
+
+  get #extraHTTPHeaders(): Record<string, string> {
+    return this.#frame?.page()._extraHTTPHeaders ?? {};
+  }
+
+  get #userAgentHeaders(): Record<string, string> {
+    return this.#frame?.page()._userAgentHeaders ?? {};
+  }
+
   override headers(): Record<string, string> {
     const headers: Record<string, string> = {};
     for (const header of this.#request.headers) {
       headers[header.name.toLowerCase()] = header.value.value;
     }
-    return headers;
+    return {
+      ...headers,
+      ...this.#extraHTTPHeaders,
+      ...this.#userAgentHeaders,
+    };
   }
 
   override response(): BidiHTTPResponse | null {
@@ -128,20 +173,24 @@ export class BidiHTTPRequest extends HTTPRequest {
   }
 
   override redirectChain(): BidiHTTPRequest[] {
-    if (this.#redirectBy === undefined) {
-      return [];
-    }
-    const redirects = [this.#redirectBy];
-    for (const redirect of redirects) {
-      if (redirect.#redirectBy !== undefined) {
-        redirects.push(redirect.#redirectBy);
-      }
-    }
-    return redirects;
+    return this.#redirectChain.slice();
   }
 
-  override frame(): BidiFrame | null {
-    return this.#frame ?? null;
+  override frame(): BidiFrame {
+    return this.#frame;
+  }
+
+  override async continue(
+    overrides?: ContinueRequestOverrides,
+    priority?: number | undefined
+  ): Promise<void> {
+    return await super.continue(
+      {
+        headers: this.#hasInternalHeaderOverwrite ? this.headers() : undefined,
+        ...overrides,
+      },
+      priority
+    );
   }
 
   override async _continue(
@@ -232,6 +281,29 @@ export class BidiHTTPRequest extends HTTPRequest {
         throw error;
       });
   }
+
+  #authenticationHandled = false;
+  #handleAuthentication = async () => {
+    if (!this.#frame) {
+      return;
+    }
+    const credentials = this.#frame.page()._credentials;
+    if (credentials && !this.#authenticationHandled) {
+      this.#authenticationHandled = true;
+      void this.#request.continueWithAuth({
+        action: 'provideCredentials',
+        credentials: {
+          type: 'password',
+          username: credentials.username,
+          password: credentials.password,
+        },
+      });
+    } else {
+      void this.#request.continueWithAuth({
+        action: 'cancel',
+      });
+    }
+  };
 }
 
 function getBidiHeaders(rawHeaders?: Record<string, unknown>) {

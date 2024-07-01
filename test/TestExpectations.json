@@ -1,12 +1,5 @@
 [
   {
-    "testIdPattern": "[ariaqueryhandler.spec] *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[autofill.spec] *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox"],
@@ -77,27 +70,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Network Events *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network Page.authenticate *",
-    "platforms": ["darwin", "linux"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network Page.authenticate *",
-    "platforms": ["win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[network.spec] network Page.setBypassServiceWorker *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox"],
@@ -112,18 +84,18 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Page.setExtraHTTPHeaders *",
+    "testIdPattern": "[network.spec] network Request.isNavigationRequest *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Request.isNavigationRequest *",
+    "testIdPattern": "[network.spec] network Request.resourceType *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "comment": "Bidi does not have equivalent field"
   },
   {
     "testIdPattern": "[network.spec] network Response.buffer *",
@@ -140,14 +112,14 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Response.text *",
+    "testIdPattern": "[network.spec] network Response.remoteAddress *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "expectations": ["FAIL"],
+    "comment": "Bidi does not have equivalent field"
   },
   {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup *",
+    "testIdPattern": "[network.spec] network Response.text *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
     "expectations": ["SKIP"],
@@ -217,60 +189,25 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[ariaqueryhandler.spec] *",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "Not supported over CDP"
+  },
+  {
+    "testIdPattern": "[ariaqueryhandler.spec] AriaQueryHandler queryOne (Chromium web test) should find by role \"heading\"",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "WebDriver BiDi locateNodes does not support shadow roots so far"
+  },
+  {
     "testIdPattern": "[autofill.spec] *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome", "chrome-headless-shell"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext BrowserContext.overridePermissions should be prompt by default",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext should close all belonging targets once closing context",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext should create new incognito context",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext should have default context",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext should timeout waiting for a non-existent target",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext should wait for a target",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext window.open should use parent tab context",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
   },
   {
     "testIdPattern": "[CDPSession.spec] Target.createCDPSession *",
@@ -305,6 +242,13 @@
     "parameters": ["firefox"],
     "expectations": ["SKIP"],
     "comment": "The test relies on the default page partition key do not contain the source origin. This is not the case for Firefox."
+  },
+  {
+    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set secure same-site cookies from a frame",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome"],
+    "expectations": ["FAIL"],
+    "comment": "Failes with fieldtrial testing config in Chrome"
   },
   {
     "testIdPattern": "[coverage.spec] *",
@@ -412,13 +356,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[frame.spec] Frame specs Frame Management should report frame.name()",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[idle_override.spec] *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -482,13 +419,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.executablePath should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.launch should be able to launch Chrome",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox"],
@@ -513,13 +443,6 @@
     "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.launch should work with no default arguments",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.launch userDataDir argument with non-existent dir",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -559,16 +482,18 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Network Events Page.Events.RequestFinished",
+    "testIdPattern": "[network.spec] network Network Events Page.Events.RequestServedFromCache *",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["FAIL"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Network Events should fire events in proper order",
+    "testIdPattern": "[network.spec] network Page.authenticate should not disable caching for *",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["PASS"]
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["FAIL"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
     "testIdPattern": "[network.spec] network Request.initiator should return the initiator",
@@ -617,6 +542,20 @@
     "comment": "Not implemented for BiDi yet."
   },
   {
+    "testIdPattern": "[network.spec] network Response.fromCache should work for *",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["FAIL"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[network.spec] network Response.fromCache should work for *",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome", "webDriverBiDi"],
+    "expectations": ["FAIL", "PASS"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
     "testIdPattern": "[network.spec] network Response.fromServiceWorker Response.fromServiceWorker",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
@@ -638,6 +577,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[oopif.spec] OOPIF should evaluate on a page with a PDF viewer",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome-headless-shell"],
+    "expectations": ["FAIL"],
+    "comment": "chrome-headless-shell does not have a PDF viewer"
+  },
+  {
     "testIdPattern": "[page.spec] Page Page.addScriptTag should throw when added with content to the CSP page",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
@@ -652,16 +598,16 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[page.spec] Page Page.close should *not* run beforeunload by default",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "testIdPattern": "[page.spec] Page Page.bringToFront should work",
+    "platforms": ["darwin"],
+    "parameters": ["chrome"],
+    "expectations": ["FAIL", "PASS"],
+    "comment": "Flaky on Mac"
   },
   {
     "testIdPattern": "[page.spec] Page Page.close should *not* run beforeunload by default",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
+    "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -701,18 +647,18 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[page.spec] Page Page.Events.Popup *",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "Deprecated"
+  },
+  {
     "testIdPattern": "[page.spec] Page Page.exposeFunction *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.exposeFunction should work with loading frames",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "Missing request interception"
   },
   {
     "testIdPattern": "[page.spec] Page Page.pdf should respect timeout",
@@ -723,27 +669,6 @@
   },
   {
     "testIdPattern": "[page.spec] Page Page.setBypassCSP *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.setOfflineMode should emulate navigator.onLine",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.setOfflineMode should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.setUserAgent *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
@@ -771,34 +696,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors with name and role",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors with role",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work for ARIA selectors in multiple isolated worlds",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[queryObjects.spec] *",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
@@ -820,18 +717,18 @@
     "comment": "BiDi spec expect the request to not trim the hash"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.continue *",
+    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.resourceType should work for document type",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueRequest in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1850680"
+    "parameters": ["webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.respond *",
+    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.resourceType should work for stylesheets",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueResponse in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1853887"
+    "parameters": ["webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
   },
   {
     "testIdPattern": "[requestinterception.spec] *",
@@ -848,13 +745,6 @@
     "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
   },
   {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should intercept",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`request.postData()` has no eqivalent in BiDi spec"
-  },
-  {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should navigate to URL with hash and fire requests without hash",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
@@ -862,53 +752,18 @@
     "comment": "BiDi spec and WPT require expect the Hash"
   },
   {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should send referer",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should show custom HTTP headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with custom referer headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with redirects",
+    "testIdPattern": "[requestinterception.spec] request interception Request.resourceType should work for document type",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
   },
   {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with redirects for subresources",
+    "testIdPattern": "[requestinterception.spec] request interception Request.resourceType should work for stylesheets",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Request.continue *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueRequest in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1850680"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Request.respond *",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueResponse in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1853887"
   },
   {
     "testIdPattern": "[screencast.spec] Screencasts Page.screencast should validate options",
@@ -1001,32 +856,11 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[accessibility.spec] Accessibility should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Change in A11Y tree on Canary"
-  },
-  {
     "testIdPattern": "[ariaqueryhandler.spec] AriaQueryHandler queryAllArray $$eval should handle many elements",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["PASS", "TIMEOUT"],
     "comment": "times out flakily"
-  },
-  {
-    "testIdPattern": "[ariaqueryhandler.spec] AriaQueryHandler queryOne (Chromium web test) should find by role \"button\"",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Querying by a11y attributes is not standard behavior"
-  },
-  {
-    "testIdPattern": "[ariaqueryhandler.spec] AriaQueryHandler queryOne (Chromium web test) should find by role \"heading\"",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Querying by a11y attributes is not standard behavior"
   },
   {
     "testIdPattern": "[bfcache.spec] BFCache can navigate to a BFCached page containing an OOPIF and a worker",
@@ -1043,13 +877,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[browser.spec] Browser specs Browser.process should keep connected after the last page is closed",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "The new headless does not allow opening a tab after the browser was closed"
-  },
-  {
     "testIdPattern": "[browser.spec] Browser specs Browser.process should not return child_process for remote browser",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
@@ -1062,12 +889,6 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[browsercontext.spec] BrowserContext BrowserContext.overridePermissions should fail when bad permission is given",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["PASS"]
   },
   {
     "testIdPattern": "[browsercontext.spec] BrowserContext BrowserContext.overridePermissions should grant permission when listed",
@@ -1119,6 +940,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[browsercontext.spec] BrowserContext should fire target events",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "In BiDi currently more events than needed are fired (because target is updated more often). We probably need to adjust the test as the behavior is not broken per se"
+  },
+  {
     "testIdPattern": "[browsercontext.spec] BrowserContext should wait for a target",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1131,6 +959,13 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[browsercontext.spec] BrowserContext should work across sessions",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "Firefox does not support multiple connection at this time"
   },
   {
     "testIdPattern": "[CDPSession.spec] Target.createCDPSession should be able to detach session",
@@ -1192,13 +1027,6 @@
     "testIdPattern": "[click.spec] Page.click should click the button if window.Node is removed",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[click.spec] Page.click should click the button with deviceScaleFactor set",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -1275,13 +1103,6 @@
   {
     "testIdPattern": "[cookies.spec] Cookie specs Page.deleteCookie should delete cookie",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Firefox default partition key is inconsistent: #12004"
-  },
-  {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.deleteCookie should delete cookie",
-    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "Not supported with cdp"
@@ -1292,13 +1113,6 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "Not supported with cdp"
-  },
-  {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.deleteCookie should not delete cookie for different domain",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Firefox default partition key is inconsistent: #12004"
   },
   {
     "testIdPattern": "[cookies.spec] Cookie specs Page.deleteCookie should not delete cookie for different domain",
@@ -1336,13 +1150,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set a cookie with a path",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set cookie with reasonable defaults",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1357,13 +1164,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set cookies from a frame",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set multiple cookies",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1371,11 +1171,10 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set multiple cookies",
+    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set secure same-site cookies from a frame",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "parameters": ["chrome", "chrome-headless-shell"],
+    "expectations": ["PASS"]
   },
   {
     "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should set secure same-site cookies from a frame",
@@ -1388,13 +1187,6 @@
     "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should work",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[cookies.spec] Cookie specs Page.setCookie should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -1420,23 +1212,9 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[defaultbrowsercontext.spec] DefaultBrowserContext page.deleteCookie() should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[defaultbrowsercontext.spec] DefaultBrowserContext page.setCookie() should work",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[defaultbrowsercontext.spec] DefaultBrowserContext page.setCookie() should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -1490,20 +1268,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[emulation.spec] Emulation Page.emulate should support clicking",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[emulation.spec] Emulation Page.emulate should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[emulation.spec] Emulation Page.emulateCPUThrottling should change the CPU throttling rate successfully",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1549,13 +1313,6 @@
     "testIdPattern": "[emulation.spec] Emulation Page.emulateNetworkConditions should change navigator.connection.effectiveType",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[emulation.spec] Emulation Page.emulateNetworkConditions should change navigator.connection.effectiveType",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -1623,13 +1380,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[emulation.spec] Emulation Page.viewport should load correct pictures when emulation dpr",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[emulation.spec] Emulation Page.viewport should support landscape emulation",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1645,13 +1395,6 @@
   },
   {
     "testIdPattern": "[emulation.spec] Emulation Page.viewport should support touch emulation",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[emulation.spec] Emulation Page.viewport should update media queries when resoltion changes",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
@@ -1714,6 +1457,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[fixtures.spec] Fixtures should close the browser when the node process closes",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "The browser `disconnect` event is not emitted"
+  },
+  {
     "testIdPattern": "[frame.spec] Frame specs Frame Management should click elements in a frameset",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -1729,13 +1479,6 @@
   },
   {
     "testIdPattern": "[frame.spec] Frame specs Frame Management should report frame from-inside shadow DOM",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[frame.spec] Frame specs Frame Management should report frame.name()",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
@@ -1782,6 +1525,12 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[idle_override.spec] Emulate idle state changing idle state emulation causes change of the IdleDetector state",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome", "webDriverBiDi"],
+    "expectations": ["PASS"]
   },
   {
     "testIdPattern": "[ignorehttpserrors.spec] ignoreHTTPSErrors Response.securityDetails Network redirects should report SecurityDetails",
@@ -2227,13 +1976,6 @@
   {
     "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Browser.disconnect should reject navigation when browser closes",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "https://github.com/puppeteer/puppeteer/issues/11849"
-  },
-  {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Browser.disconnect should reject navigation when browser closes",
-    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL", "PASS"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
@@ -2243,7 +1985,7 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "comment": "https://github.com/puppeteer/puppeteer/issues/11849"
   },
   {
     "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.connect should be able to close remote browser",
@@ -2284,20 +2026,6 @@
     "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.connect should be able to connect to the same page simultaneously",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.connect should be able to reconnect",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.connect should be able to reconnect to a disconnected browser",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -2414,20 +2142,6 @@
     "comment": "For some reason it times out on MacOS. Perhaps it's a bug in chromium-bidi"
   },
   {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.launch tmp profile should be cleaned up",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.launch tmp profile should be cleaned up",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[locator.spec] Locator Locator.race races multiple locators",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -2440,6 +2154,13 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[mouse.spec] Mouse should set ctrlKey on the wheel event",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "Wheel event is not supported"
   },
   {
     "testIdPattern": "[mouse.spec] Mouse should trigger hover state with removed window.Node",
@@ -2512,13 +2233,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[navigation.spec] navigation Page.goto should navigate to dataURL and fire dataURL requests",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[navigation.spec] navigation Page.goto should navigate to empty page with networkidle0",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -2547,27 +2261,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[navigation.spec] navigation Page.goto should not leak listeners during navigation",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[navigation.spec] navigation Page.goto should not throw an error for a 404 response with an empty body",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Chrome returns an error instead of the network request"
-  },
-  {
-    "testIdPattern": "[navigation.spec] navigation Page.goto should not throw an error for a 500 response with an empty body",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "Chrome returns an error instead of the network request"
-  },
-  {
     "testIdPattern": "[navigation.spec] navigation Page.goto should send referer",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -2584,13 +2277,6 @@
   {
     "testIdPattern": "[navigation.spec] navigation Page.goto should work when navigating to data url",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[navigation.spec] navigation Page.goto should work when navigating to data url",
-    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
@@ -2600,7 +2286,7 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "History navigation is breaking the Puppeteer expecation about navigation."
+    "comment": "https://bugzilla.mozilla.org/show_bug.cgi?id=1879163"
   },
   {
     "testIdPattern": "[navigation.spec] navigation Page.goto should work with anchor navigation",
@@ -2620,20 +2306,6 @@
     "testIdPattern": "[navigation.spec] navigation Page.waitForNavigation should work when subframe issues window.stop()",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[navigation.spec] navigation Page.waitForNavigation should work when subframe issues window.stop()",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[navigation.spec] navigation Page.waitForNavigation should work when subframe issues window.stop()",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -2684,7 +2356,7 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "comment": "Fetch.enable not supported with CDP"
   },
   {
     "testIdPattern": "[network.spec] network Network Events Page.Events.RequestFinished",
@@ -2694,17 +2366,11 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Network Events Page.Events.RequestServedFromCache",
+    "testIdPattern": "[network.spec] network Network Events Page.Events.RequestServedFromCache for stylesheet",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
+    "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network Network Events Page.Events.RequestServedFromCache",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["PASS"]
+    "comment": "Needs Firefox support for network events for cached stylesheets https://bugzilla.mozilla.org/show_bug.cgi?id=1879438"
   },
   {
     "testIdPattern": "[network.spec] network Network Events Page.Events.Response",
@@ -2749,6 +2415,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[network.spec] network Page.authenticate should allow disable authentication",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "The Puppeteer implementation does not expect 2 responseCompleted events (that AuthRequired triggered)"
+  },
+  {
     "testIdPattern": "[network.spec] network Page.authenticate should fail if wrong credentials",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -2756,11 +2429,18 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Page.authenticate should not disable caching",
+    "testIdPattern": "[network.spec] network Page.authenticate should not disable caching for script",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["SKIP"],
+    "comment": "TODO: Needs investigation, isCached is false for the script request handle via network interception"
+  },
+  {
+    "testIdPattern": "[network.spec] network Page.authenticate should not disable caching for stylesheet",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["SKIP"],
+    "comment": "Needs Firefox support for network events for cached stylesheets https://bugzilla.mozilla.org/show_bug.cgi?id=1879438"
   },
   {
     "testIdPattern": "[network.spec] network Page.authenticate should work",
@@ -2768,6 +2448,20 @@
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[network.spec] network Page.authenticate should work",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["chrome", "webDriverBiDi"],
+    "expectations": ["FAIL", "PASS"],
+    "comment": "Flaky see https://github.com/puppeteer/puppeteer/issues/12253"
+  },
+  {
+    "testIdPattern": "[network.spec] network Page.authenticate should work",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["TIMEOUT"],
+    "comment": "When navigating to page with authentication the command response (error) never comes without interception"
   },
   {
     "testIdPattern": "[network.spec] network Page.setExtraHTTPHeaders should work",
@@ -2781,20 +2475,6 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["FAIL", "PASS"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network raw network headers Same-origin set-cookie navigation",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network raw network headers Same-origin set-cookie subresource",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
@@ -2868,25 +2548,11 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[network.spec] network Response.fromCache should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[network.spec] network Response.fromCache should work",
+    "testIdPattern": "[network.spec] network Response.fromCache should work for stylesheet",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "Needs investigation, it looks like a bug in Puppeteer"
-  },
-  {
-    "testIdPattern": "[network.spec] network Response.fromCache should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL", "PASS"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "comment": "Needs Firefox support for network events for cached stylesheets https://bugzilla.mozilla.org/show_bug.cgi?id=1879438"
   },
   {
     "testIdPattern": "[network.spec] network Response.fromServiceWorker Response.fromServiceWorker",
@@ -2900,6 +2566,13 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[network.spec] network Response.remoteAddress should support redirects",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
@@ -2945,6 +2618,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[oopif.spec] OOPIF should evaluate on a page with a PDF viewer",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["SKIP"],
+    "comment": "chrome-specific test"
+  },
+  {
     "testIdPattern": "[oopif.spec] OOPIF should expose events within OOPIFs",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome", "webDriverBiDi"],
@@ -2966,18 +2646,11 @@
     "comment": "Failed previously and currently times out"
   },
   {
-    "testIdPattern": "[oopif.spec] OOPIF should report google.com frame",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL", "TIMEOUT"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[oopif.spec] OOPIF should support lazy OOP frames",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL", "TIMEOUT"],
-    "comment": "https://bugzilla.mozilla.org/show_bug.cgi?id=187816"
+    "comment": "https://bugzilla.mozilla.org/show_bug.cgi?id=1878166"
   },
   {
     "testIdPattern": "[oopif.spec] OOPIF should support OOP iframes becoming normal iframes again",
@@ -3078,31 +2751,10 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[page.spec] Page Page.close should run beforeunload if asked for",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[page.spec] Page Page.close should terminate network waiters",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Console should have location and stack trace for console API calls",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Console should have location and stack trace for console API calls",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
@@ -3134,13 +2786,6 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[page.spec] Page Page.Events.Console should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[page.spec] Page Page.Events.Console should work for different console API calls with logging functions",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
@@ -3152,52 +2797,10 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+    "comment": "https://bugzilla.mozilla.org/show_bug.cgi?id=1866749"
   },
   {
     "testIdPattern": "[page.spec] Page Page.Events.error should throw when page crashes",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work with clicking target=_blank and rel=noopener",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work with clicking target=_blank and with rel=opener",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work with clicking target=_blank and without rel=opener",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work with fake-clicking target=_blank and rel=noopener",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[page.spec] Page Page.Events.Popup should work with noopener",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["SKIP"],
@@ -3318,9 +2921,23 @@
   {
     "testIdPattern": "[page.spec] Page Page.setOfflineMode should emulate navigator.onLine",
     "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "Not supported by WebDriver BiDi"
+  },
+  {
+    "testIdPattern": "[page.spec] Page Page.setOfflineMode should emulate navigator.onLine",
+    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[page.spec] Page Page.setOfflineMode should work",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["FAIL"],
+    "comment": "Not supported by WebDriver BiDi"
   },
   {
     "testIdPattern": "[page.spec] Page Page.setOfflineMode should work",
@@ -3337,18 +2954,11 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[pdf.spec] Page.pdf can print to PDF with outline",
+    "testIdPattern": "[page.spec] Page Page.setUserAgent should work with additional userAgentMetdata",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headful"],
+    "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["FAIL"],
-    "comment": "only works in the old headless code"
-  },
-  {
-    "testIdPattern": "[pdf.spec] Page.pdf can print to PDF with outline",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless"],
-    "expectations": ["FAIL"],
-    "comment": "only works in the old headless code"
+    "comment": "Chrome-specific test"
   },
   {
     "testIdPattern": "[proxy.spec] request proxy in incognito browser context should proxy requests when configured at context level",
@@ -3369,6 +2979,34 @@
     "platforms": ["linux"],
     "parameters": ["cdp", "chrome"],
     "expectations": ["FAIL", "PASS"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors with name and role",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work ARIA selectors with role",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
+    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[queryhandler.spec] Query handler tests P selectors should work for ARIA selectors in multiple isolated worlds",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["SKIP"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
@@ -3402,21 +3040,14 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should be able to remove headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs investigation, on Firefox the test is passing even if the origin header is not removed"
+    "comment": "TODO: Needs support for data URIs in Firefox in content process https://bugzilla.mozilla.org/show_bug.cgi?id=1903060"
   },
   {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should be abortable with custom error codes",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Test relies on chrome-only error code (Firefox currently outputs NS_ERROR_ABORT)"
+    "comment": "TODO: BiDi does not support custom errors - https://github.com/w3c/webdriver-bidi/issues/508"
   },
   {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should cache if cache enabled",
@@ -3424,34 +3055,6 @@
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should cache if cache enabled",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: Fixed in the next chromium-bidi release"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should cooperatively continue by priority",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueRequest in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1850680"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should cooperatively respond by priority",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs full support for continueRequest in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1850680"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should intercept",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs Puppeteer support for BidiHTTPRequest.postData"
   },
   {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should load fonts if cache enabled",
@@ -3461,13 +3064,6 @@
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should navigate to dataURL and fire dataURL requests",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
-  },
-  {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should not cache if cache disabled",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
@@ -3475,45 +3071,10 @@
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should send referer",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should show custom HTTP headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work when header manipulation headers with redirect",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs investigation, on Firefox the test is passing even if headers are not actually modified"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with custom referer headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with encoded server - 2",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with equal requests",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
     "comment": "TODO: Needs investigation"
   },
   {
@@ -3524,20 +3085,6 @@
     "comment": "TODO: Needs support for file URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1826210"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with redirects",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for BidiHTTPRequest.resourceType"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with redirects for subresources",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for BidiHTTPRequest.resourceType"
-  },
-  {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with requests without networkId",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
@@ -3545,10 +3092,11 @@
     "comment": "Test requires CDP"
   },
   {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.continue should work",
+    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Request.continue should redirect in a way non-observable to page",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["PASS"]
+    "expectations": ["FAIL"],
+    "comment": "Firefox needs support for the url parameter of continueRequest"
   },
   {
     "testIdPattern": "[requestinterception-experimental.spec] request interception \"after each\" hook in \"request interception\"",
@@ -3583,21 +3131,14 @@
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should be able to remove headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs investigation, on Firefox the test is passing even if the origin header is not removed"
+    "comment": "TODO: Needs support for data URIs in Firefox in content process https://bugzilla.mozilla.org/show_bug.cgi?id=1903060"
   },
   {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should be abortable with custom error codes",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Test relies on chrome-only error code (Firefox currently outputs NS_ERROR_ABORT)"
+    "comment": "TODO: BiDi does not support custom errors - https://github.com/w3c/webdriver-bidi/issues/508"
   },
   {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should cache if cache enabled",
@@ -3605,20 +3146,6 @@
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should cache if cache enabled",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: Fixed in the next chromium-bidi release"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should intercept",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs Puppeteer support for BidiHTTPRequest.postData"
   },
   {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should load fonts if cache enabled",
@@ -3626,13 +3153,6 @@
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should navigate to dataURL and fire dataURL requests",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
   },
   {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should navigate to URL with hash and fire requests without hash",
@@ -3649,45 +3169,10 @@
     "comment": "TODO: Needs support for enabling cache in BiDi without CDP https://github.com/w3c/webdriver-bidi/issues/582"
   },
   {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should send referer",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should show custom HTTP headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work when header manipulation headers with redirect",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs investigation, on Firefox the test is passing even if headers are not actually modified"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with custom referer headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for Page.setExtraHTTPHeaders"
-  },
-  {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with encoded server - 2",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for data URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1805176"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with equal requests",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
     "comment": "TODO: Needs investigation"
   },
   {
@@ -3696,20 +3181,6 @@
     "parameters": ["firefox", "webDriverBiDi"],
     "expectations": ["SKIP"],
     "comment": "TODO: Needs support for file URIs in Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1826210"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with redirects",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for BidiHTTPRequest.resourceType"
-  },
-  {
-    "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with redirects for subresources",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: Needs support for BidiHTTPRequest.resourceType"
   },
   {
     "testIdPattern": "[requestinterception.spec] request interception Page.setRequestInterception should work with requests without networkId",
@@ -3726,10 +3197,11 @@
     "comment": "CDP specific issue, maybe we can support it from BiDi+"
   },
   {
-    "testIdPattern": "[requestinterception.spec] request interception Request.continue should work",
+    "testIdPattern": "[requestinterception.spec] request interception Request.continue should redirect in a way non-observable to page",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["PASS"]
+    "expectations": ["FAIL"],
+    "comment": "Firefox needs support for the url parameter of continueRequest"
   },
   {
     "testIdPattern": "[screenshot.spec] Screenshots Cdp should use scale for clip",
@@ -3739,39 +3211,18 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
-    "testIdPattern": "[screenshot.spec] Screenshots ElementHandle.screenshot should work for an element with an offset",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[screenshot.spec] Screenshots ElementHandle.screenshot should work for an element with an offset",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[screenshot.spec] Screenshots ElementHandle.screenshot should work with a rotated element",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["cdp", "firefox"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[screenshot.spec] Screenshots ElementHandle.screenshot should work with a rotated element",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
     "testIdPattern": "[screenshot.spec] Screenshots Page.screenshot should clip clip bigger than the viewport without \"captureBeyondViewport\"",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL", "PASS"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[screenshot.spec] Screenshots Page.screenshot should restore to original viewport size after taking fullPage screenshots when defaultViewport is null",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["cdp", "firefox"],
+    "expectations": ["FAIL"],
+    "comment": "Firefox does not support Emulation.clearDeviceMetricsOverride"
   },
   {
     "testIdPattern": "[screenshot.spec] Screenshots Page.screenshot should take fullPage screenshots",
@@ -3936,21 +3387,7 @@
   {
     "testIdPattern": "[touchscreen.spec] Touchscreen Touchscreen.prototype.tap should work",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[touchscreen.spec] Touchscreen Touchscreen.prototype.tap should work",
-    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[touchscreen.spec] Touchscreen Touchscreen.prototype.touchMove should work",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
@@ -4006,20 +3443,6 @@
   {
     "testIdPattern": "[waittask.spec] waittask specs Frame.waitForSelector should survive cross-process navigation",
     "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[waittask.spec] waittask specs Frame.waitForSelector should survive cross-process navigation",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["firefox", "webDriverBiDi"],
-    "expectations": ["SKIP"],
-    "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
-  },
-  {
-    "testIdPattern": "[waittask.spec] waittask specs Frame.waitForSelector should survive cross-process navigation",
-    "platforms": ["darwin", "linux", "win32"],
     "parameters": ["cdp", "firefox"],
     "expectations": ["FAIL", "PASS"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
@@ -4058,6 +3481,12 @@
     "parameters": ["chrome", "webDriverBiDi"],
     "expectations": ["FAIL"],
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
+  },
+  {
+    "testIdPattern": "[worker.spec] Workers should report errors",
+    "platforms": ["darwin", "linux", "win32"],
+    "parameters": ["firefox", "webDriverBiDi"],
+    "expectations": ["PASS"]
   },
   {
     "testIdPattern": "[CDPSession.spec] Target.createCDPSession should send events",
@@ -4116,6 +3545,13 @@
     "comment": "TODO: add a comment explaining why this expectation is required (include links to issues)"
   },
   {
+    "testIdPattern": "[launcher.spec] Launcher specs Puppeteer Puppeteer.connect should support ignoreHTTPSErrors option",
+    "platforms": ["darwin"],
+    "parameters": ["cdp", "chrome", "headless"],
+    "expectations": ["SKIP"],
+    "comment": "Started to flake on macos-latest (arm64)"
+  },
+  {
     "testIdPattern": "[network.spec] network Network Events Page.Events.Request",
     "platforms": ["linux"],
     "parameters": ["cdp", "chrome", "headless"],
@@ -4138,48 +3574,6 @@
   },
   {
     "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should be abortable with custom error codes",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should intercept",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`request.postData()` has no eqivalent in BiDi spec"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should send referer",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should show custom HTTP headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with custom referer headers",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`setExtraHTTPHeaders` not implemented"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with redirects",
-    "platforms": ["darwin", "linux", "win32"],
-    "parameters": ["chrome", "headless", "webDriverBiDi"],
-    "expectations": ["FAIL"],
-    "comment": "`HTTPRequest.resourceType()` has no eqivalent in BiDi spec"
-  },
-  {
-    "testIdPattern": "[requestinterception-experimental.spec] cooperative request interception Page.setRequestInterception should work with redirects for subresources",
     "platforms": ["darwin", "linux", "win32"],
     "parameters": ["chrome", "headless", "webDriverBiDi"],
     "expectations": ["FAIL"],

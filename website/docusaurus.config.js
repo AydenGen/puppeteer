@@ -83,6 +83,34 @@ const config = {
             from: '/guides',
             to: '/category/guides',
           },
+          {
+            from: '/docs',
+            to: '/guides/what-is-puppeteer',
+          },
+          {
+            from: '/chromium-support',
+            to: '/supported-browsers',
+          },
+          {
+            from: '/guides/query-selectors',
+            to: '/guides/page-interactions',
+          },
+          {
+            from: '/guides/request-interception',
+            to: '/guides/network-interception',
+          },
+          {
+            from: '/guides/query-selectors-legacy',
+            to: '/guides/page-interactions',
+          },
+          {
+            from: '/guides/locators',
+            to: '/guides/page-interactions',
+          },
+          {
+            from: '/guides/evaluate-javascript',
+            to: '/guides/javascript-execution',
+          },
         ],
       }),
     ],
@@ -184,6 +212,7 @@ const config = {
                 'Browser',
                 'BrowserContext',
                 'Page',
+                'Locator',
                 'WebWorker',
                 'Accessibility',
                 'Keyboard',
@@ -232,6 +261,9 @@ const config = {
           path: DOC_PATH,
           routeBasePath: DOC_ROUTE_BASE_PATH,
           sidebarPath: require.resolve('./sidebars.js'),
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -256,8 +288,8 @@ const config = {
         items: [
           ...[
             {
-              type: 'doc',
-              docId: 'index',
+              type: 'docSidebar',
+              sidebarId: 'docs',
               label: 'Docs',
             },
             {

@@ -6,25 +6,56 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 module.exports = {
   docs: [
-    'index',
+    {
+      type: 'category',
+      label: 'Introduction',
+      link: {
+        type: 'generated-index',
+        title: 'Introduction',
+        keywords: ['introduction'],
+      },
+      items: [
+        'guides/what-is-puppeteer',
+        'guides/installation',
+        'guides/getting-started',
+        'guides/system-requirements',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Core concepts',
+      link: {
+        type: 'generated-index',
+        title: 'Core concepts',
+        keywords: ['core-concepts'],
+      },
+      items: [
+        'guides/browser-management',
+        'guides/page-interactions',
+        'guides/javascript-execution',
+        'guides/network-logging',
+      ],
+    },
     {
       type: 'category',
       label: 'Guides',
       link: {
         type: 'generated-index',
-        title: 'Puppeteer Guides',
+        title: 'Guides',
         keywords: ['guides'],
       },
-      collapsed: false,
       items: [
         'guides/configuration',
-        'guides/query-selectors',
-        'guides/locators',
-        'guides/evaluate-javascript',
-        'guides/docker',
-        'guides/request-interception',
-        'guides/chrome-extensions',
         'guides/debugging',
+        'guides/network-interception',
+        'guides/headless-modes',
+        'guides/screenshots',
+        'guides/pdf-generation',
+        'guides/chrome-extensions',
+        'guides/cookies',
+        'guides/files',
+        'guides/running-puppeteer-in-the-browser',
+        'guides/running-puppeteer-in-extensions',
       ],
     },
     {
@@ -35,19 +66,31 @@ module.exports = {
         title: 'Puppeteer Integrations',
         keywords: ['integrations'],
       },
-      collapsed: false,
       items: [
         {
           type: 'doc',
-          label: 'Angular Schematics',
-          id: 'integrations/ng-schematics',
+          label: 'Angular',
+          id: 'guides/ng-schematics',
+        },
+        {
+          type: 'doc',
+          label: 'Docker',
+          id: 'guides/docker',
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Community',
+      link: {
+        type: 'generated-index',
+        title: 'Community',
+        keywords: ['community'],
+      },
+      items: ['contributing', 'troubleshooting', 'guides/links'],
+    },
     'webdriver-bidi',
-    'chromium-support',
-    'troubleshooting',
-    'contributing',
+    'supported-browsers',
     'faq',
   ],
   api: [

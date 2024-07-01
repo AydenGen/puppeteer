@@ -37,7 +37,7 @@ Default
 </th></tr></thead>
 <tbody><tr><td>
 
-displayHeaderFooter
+<span id="displayheaderfooter">displayHeaderFooter</span>
 
 </td><td>
 
@@ -58,7 +58,7 @@ Whether to show the header and footer.
 </td></tr>
 <tr><td>
 
-footerTemplate
+<span id="footertemplate">footerTemplate</span>
 
 </td><td>
 
@@ -70,14 +70,14 @@ string
 
 </td><td>
 
-HTML template for the print footer. Has the same constraints and support for special classes as [PDFOptions.headerTemplate](./puppeteer.pdfoptions.md).
+HTML template for the print footer. Has the same constraints and support for special classes as [PDFOptions.headerTemplate](./puppeteer.pdfoptions.md#headertemplate).
 
 </td><td>
 
 </td></tr>
 <tr><td>
 
-format
+<span id="format">format</span>
 
 </td><td>
 
@@ -89,6 +89,10 @@ format
 
 </td><td>
 
+**Remarks:**
+
+If set, this takes priority over the `width` and `height` options.
+
 </td><td>
 
 `letter`.
@@ -96,7 +100,7 @@ format
 </td></tr>
 <tr><td>
 
-headerTemplate
+<span id="headertemplate">headerTemplate</span>
 
 </td><td>
 
@@ -125,7 +129,7 @@ HTML template for the print header. Should be valid HTML with the following clas
 </td></tr>
 <tr><td>
 
-height
+<span id="height">height</span>
 
 </td><td>
 
@@ -144,7 +148,7 @@ Sets the height of paper. You can pass in a number or a string with a unit.
 </td></tr>
 <tr><td>
 
-landscape
+<span id="landscape">landscape</span>
 
 </td><td>
 
@@ -165,7 +169,7 @@ Whether to print in landscape orientation.
 </td></tr>
 <tr><td>
 
-margin
+<span id="margin">margin</span>
 
 </td><td>
 
@@ -186,7 +190,7 @@ Set the PDF margins.
 </td></tr>
 <tr><td>
 
-omitBackground
+<span id="omitbackground">omitBackground</span>
 
 </td><td>
 
@@ -207,7 +211,7 @@ Hides default white background and allows generating pdfs with transparency.
 </td></tr>
 <tr><td>
 
-outline
+<span id="outline">outline</span>
 
 </td><td>
 
@@ -219,7 +223,7 @@ boolean
 
 </td><td>
 
-Generate document outline.
+**_(Experimental)_** Generate document outline.
 
 </td><td>
 
@@ -228,7 +232,7 @@ Generate document outline.
 </td></tr>
 <tr><td>
 
-pageRanges
+<span id="pageranges">pageRanges</span>
 
 </td><td>
 
@@ -249,7 +253,7 @@ The empty string, which means all pages are printed.
 </td></tr>
 <tr><td>
 
-path
+<span id="path">path</span>
 
 </td><td>
 
@@ -263,6 +267,10 @@ string
 
 The path to save the file to.
 
+**Remarks:**
+
+If the path is relative, it's resolved relative to the current working directory.
+
 </td><td>
 
 `undefined`, which means the PDF will not be written to disk.
@@ -270,7 +278,7 @@ The path to save the file to.
 </td></tr>
 <tr><td>
 
-preferCSSPageSize
+<span id="prefercsspagesize">preferCSSPageSize</span>
 
 </td><td>
 
@@ -291,7 +299,7 @@ Give any CSS `@page` size declared in the page priority over what is declared in
 </td></tr>
 <tr><td>
 
-printBackground
+<span id="printbackground">printBackground</span>
 
 </td><td>
 
@@ -312,7 +320,7 @@ Set to `true` to print background graphics.
 </td></tr>
 <tr><td>
 
-scale
+<span id="scale">scale</span>
 
 </td><td>
 
@@ -333,7 +341,7 @@ Scales the rendering of the web page. Amount must be between `0.1` and `2`.
 </td></tr>
 <tr><td>
 
-tagged
+<span id="tagged">tagged</span>
 
 </td><td>
 
@@ -345,7 +353,7 @@ boolean
 
 </td><td>
 
-Generate tagged (accessible) PDF.
+**_(Experimental)_** Generate tagged (accessible) PDF.
 
 </td><td>
 
@@ -354,7 +362,7 @@ Generate tagged (accessible) PDF.
 </td></tr>
 <tr><td>
 
-timeout
+<span id="timeout">timeout</span>
 
 </td><td>
 
@@ -368,6 +376,8 @@ number
 
 Timeout in milliseconds. Pass `0` to disable timeout.
 
+The default value can be changed by using [Page.setDefaultTimeout()](./puppeteer.page.setdefaulttimeout.md)
+
 </td><td>
 
 `30_000`
@@ -375,7 +385,28 @@ Timeout in milliseconds. Pass `0` to disable timeout.
 </td></tr>
 <tr><td>
 
-width
+<span id="waitforfonts">waitForFonts</span>
+
+</td><td>
+
+`optional`
+
+</td><td>
+
+boolean
+
+</td><td>
+
+If true, waits for `document.fonts.ready` to resolve. This might require activating the page using [Page.bringToFront()](./puppeteer.page.bringtofront.md) if the page is in the background.
+
+</td><td>
+
+`true`
+
+</td></tr>
+<tr><td>
+
+<span id="width">width</span>
 
 </td><td>
 

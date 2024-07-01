@@ -15,6 +15,7 @@ import type {Frame, WaitForOptions} from '../api/Frame.js';
 import type {HTTPRequest} from '../api/HTTPRequest.js';
 import type {HTTPResponse} from '../api/HTTPResponse.js';
 import type {JSHandle} from '../api/JSHandle.js';
+import type {Credentials} from '../api/Page.js';
 import {
   Page,
   PageEvent,
@@ -55,7 +56,6 @@ import {Deferred} from '../util/Deferred.js';
 import {AsyncDisposableStack} from '../util/disposable.js';
 import {isErrorLike} from '../util/ErrorLike.js';
 
-import {Accessibility} from './Accessibility.js';
 import {Binding} from './Binding.js';
 import {CdpCDPSession} from './CDPSession.js';
 import {isTargetClosedError} from './Connection.js';
@@ -63,15 +63,15 @@ import {Coverage} from './Coverage.js';
 import type {DeviceRequestPrompt} from './DeviceRequestPrompt.js';
 import {CdpDialog} from './Dialog.js';
 import {EmulationManager} from './EmulationManager.js';
-import {createCdpHandle} from './ExecutionContext.js';
 import {FirefoxTargetManager} from './FirefoxTargetManager.js';
 import type {CdpFrame} from './Frame.js';
 import {FrameManager} from './FrameManager.js';
 import {FrameManagerEvent} from './FrameManagerEvents.js';
 import {CdpKeyboard, CdpMouse, CdpTouchscreen} from './Input.js';
+import type {IsolatedWorld} from './IsolatedWorld.js';
 import {MAIN_WORLD} from './IsolatedWorlds.js';
 import {releaseObject} from './JSHandle.js';
-import type {Credentials, NetworkConditions} from './NetworkManager.js';
+import type {NetworkConditions} from './NetworkManager.js';
 import type {CdpTarget} from './Target.js';
 import type {TargetManager} from './TargetManager.js';
 import {TargetManagerEvent} from './TargetManager.js';
@@ -99,10 +99,9 @@ export class CdpPage extends Page {
   static async _create(
     client: CDPSession,
     target: CdpTarget,
-    ignoreHTTPSErrors: boolean,
     defaultViewport: Viewport | null
   ): Promise<CdpPage> {
-    const page = new CdpPage(client, target, ignoreHTTPSErrors);
+    const page = new CdpPage(client, target);
     await page.#initialize();
     if (defaultViewport) {
       try {
@@ -128,7 +127,6 @@ export class CdpPage extends Page {
   #keyboard: CdpKeyboard;
   #mouse: CdpMouse;
   #touchscreen: CdpTouchscreen;
-  #accessibility: Accessibility;
   #frameManager: FrameManager;
   #emulationManager: EmulationManager;
   #tracing: Tracing;
@@ -217,8 +215,6 @@ export class CdpPage extends Page {
         return this.emit(PageEvent.Load, undefined);
       },
     ],
-    ['Runtime.consoleAPICalled', this.#onConsoleAPI.bind(this)],
-    ['Runtime.bindingCalled', this.#onBindingCalled.bind(this)],
     ['Page.javascriptDialogOpening', this.#onDialog.bind(this)],
     ['Runtime.exceptionThrown', this.#handleException.bind(this)],
     ['Inspector.targetCrashed', this.#onTargetCrashed.bind(this)],
@@ -227,11 +223,7 @@ export class CdpPage extends Page {
     ['Page.fileChooserOpened', this.#onFileChooser.bind(this)],
   ] as const;
 
-  constructor(
-    client: CDPSession,
-    target: CdpTarget,
-    ignoreHTTPSErrors: boolean
-  ) {
+  constructor(client: CDPSession, target: CdpTarget) {
     super();
     this.#primaryTargetClient = client;
     this.#tabTargetClient = client.parentSession()!;
@@ -243,13 +235,7 @@ export class CdpPage extends Page {
     this.#keyboard = new CdpKeyboard(client);
     this.#mouse = new CdpMouse(client, this.#keyboard);
     this.#touchscreen = new CdpTouchscreen(client, this.#keyboard);
-    this.#accessibility = new Accessibility(client);
-    this.#frameManager = new FrameManager(
-      client,
-      this,
-      ignoreHTTPSErrors,
-      this._timeoutSettings
-    );
+    this.#frameManager = new FrameManager(client, this, this._timeoutSettings);
     this.#emulationManager = new EmulationManager(client);
     this.#tracing = new Tracing(client);
     this.#coverage = new Coverage(client);
@@ -258,6 +244,26 @@ export class CdpPage extends Page {
     for (const [eventName, handler] of this.#frameManagerHandlers) {
       this.#frameManager.on(eventName, handler);
     }
+
+    this.#frameManager.on(
+      FrameManagerEvent.ConsoleApiCalled,
+      ([world, event]: [
+        IsolatedWorld,
+        Protocol.Runtime.ConsoleAPICalledEvent,
+      ]) => {
+        this.#onConsoleAPI(world, event);
+      }
+    );
+
+    this.#frameManager.on(
+      FrameManagerEvent.BindingCalled,
+      ([world, event]: [
+        IsolatedWorld,
+        Protocol.Runtime.BindingCalledEvent,
+      ]) => {
+        void this.#onBindingCalled(world, event);
+      }
+    );
 
     for (const [eventName, handler] of this.#networkManagerHandlers) {
       // TODO: Remove any.
@@ -306,7 +312,6 @@ export class CdpPage extends Page {
     this.#keyboard.updateClient(newSession);
     this.#mouse.updateClient(newSession);
     this.#touchscreen.updateClient(newSession);
-    this.#accessibility.updateClient(newSession);
     this.#emulationManager.updateClient(newSession);
     this.#tracing.updateClient(newSession);
     this.#coverage.updateClient(newSession);
@@ -514,10 +519,6 @@ export class CdpPage extends Page {
     return this.#tracing;
   }
 
-  override get accessibility(): Accessibility {
-    return this.#accessibility;
-  }
-
   override frames(): Frame[] {
     return this.#frameManager.frames();
   }
@@ -585,10 +586,9 @@ export class CdpPage extends Page {
         prototypeObjectId: prototypeHandle.id,
       }
     );
-    return createCdpHandle(
-      this.mainFrame().mainRealm(),
-      response.objects
-    ) as HandleFor<Prototype[]>;
+    return this.mainFrame()
+      .mainRealm()
+      .createCdpHandle(response.objects) as HandleFor<Prototype[]>;
   }
 
   override async cookies(...urls: string[]): Promise<Cookie[]> {
@@ -735,7 +735,7 @@ export class CdpPage extends Page {
     this.#bindings.delete(name);
   }
 
-  override async authenticate(credentials: Credentials): Promise<void> {
+  override async authenticate(credentials: Credentials | null): Promise<void> {
     return await this.#frameManager.networkManager.authenticate(credentials);
   }
 
@@ -789,41 +789,12 @@ export class CdpPage extends Page {
     );
   }
 
-  async #onConsoleAPI(
+  #onConsoleAPI(
+    world: IsolatedWorld,
     event: Protocol.Runtime.ConsoleAPICalledEvent
-  ): Promise<void> {
-    if (event.executionContextId === 0) {
-      // DevTools protocol stores the last 1000 console messages. These
-      // messages are always reported even for removed execution contexts. In
-      // this case, they are marked with executionContextId = 0 and are
-      // reported upon enabling Runtime agent.
-      //
-      // Ignore these messages since:
-      // - there's no execution context we can use to operate with message
-      //   arguments
-      // - these messages are reported before Puppeteer clients can subscribe
-      //   to the 'console'
-      //   page event.
-      //
-      // @see https://github.com/puppeteer/puppeteer/issues/3865
-      return;
-    }
-    const context = this.#frameManager.getExecutionContextById(
-      event.executionContextId,
-      this.#primaryTargetClient
-    );
-    if (!context) {
-      debugError(
-        new Error(
-          `ExecutionContext not found for a console message: ${JSON.stringify(
-            event
-          )}`
-        )
-      );
-      return;
-    }
+  ): void {
     const values = event.args.map(arg => {
-      return createCdpHandle(context._world, arg);
+      return world.createCdpHandle(arg);
     });
     this.#addConsoleMessage(
       convertConsoleMessageLevel(event.type),
@@ -833,6 +804,7 @@ export class CdpPage extends Page {
   }
 
   async #onBindingCalled(
+    world: IsolatedWorld,
     event: Protocol.Runtime.BindingCalledEvent
   ): Promise<void> {
     let payload: BindingPayload;
@@ -848,10 +820,7 @@ export class CdpPage extends Page {
       return;
     }
 
-    const context = this.#frameManager.executionContextById(
-      event.executionContextId,
-      this.#primaryTargetClient
-    );
+    const context = world.context;
     if (!context) {
       return;
     }
@@ -1005,7 +974,7 @@ export class CdpPage extends Page {
     return await this.#emulationManager.emulateVisionDeficiency(type);
   }
 
-  override async setViewport(viewport: Viewport): Promise<void> {
+  override async setViewport(viewport: Viewport | null): Promise<void> {
     const needsReload = await this.#emulationManager.emulateViewport(viewport);
     this.#viewport = viewport;
     if (needsReload) {
@@ -1127,21 +1096,24 @@ export class CdpPage extends Page {
       omitBackground,
       tagged: generateTaggedPDF,
       outline: generateDocumentOutline,
+      waitForFonts,
     } = parsePDFOptions(options);
 
     if (omitBackground) {
       await this.#emulationManager.setTransparentBackgroundColor();
     }
 
-    await firstValueFrom(
-      from(
-        this.mainFrame()
-          .isolatedRealm()
-          .evaluate(() => {
-            return document.fonts.ready;
-          })
-      ).pipe(raceWith(timeout(ms)))
-    );
+    if (waitForFonts) {
+      await firstValueFrom(
+        from(
+          this.mainFrame()
+            .isolatedRealm()
+            .evaluate(() => {
+              return document.fonts.ready;
+            })
+        ).pipe(raceWith(timeout(ms)))
+      );
+    }
 
     const printCommandPromise = this.#primaryTargetClient.send(
       'Page.printToPDF',
